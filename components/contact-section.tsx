@@ -7,7 +7,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { Checkbox } from "@/components/ui/checkbox"
 import { Phone, Mail, MapPin, Clock } from "lucide-react"
+import Link from "next/link"
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -15,6 +17,7 @@ export function ContactSection() {
     email: "",
     phone: "",
     message: "",
+    smsConsent: false,
   })
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -172,9 +175,40 @@ export function ContactSection() {
                   />
                 </div>
 
+                <div className="flex items-start space-x-3 bg-secondary/20 p-4 rounded-lg border border-border">
+                  <Checkbox
+                    id="smsConsent"
+                    checked={formData.smsConsent}
+                    onCheckedChange={(checked) => setFormData((prev) => ({ ...prev, smsConsent: checked as boolean }))}
+                    className="mt-1"
+                  />
+                  <div className="space-y-1">
+                    <label htmlFor="smsConsent" className="text-sm font-medium leading-none cursor-pointer">
+                      I consent to receive informational SMS messages
+                    </label>
+                    <p className="text-xs text-muted-foreground">
+                      By checking this box, you agree to receive informational SMS text messages from MTY Construction
+                      about your project updates, appointments, and service notifications at the phone number provided.
+                      Message frequency varies. Message and data rates may apply. Reply STOP to opt-out at any time.
+                      View our{" "}
+                      <Link href="/privacy-policy" className="text-primary hover:underline">
+                        Privacy Policy
+                      </Link>{" "}
+                      for details.
+                    </p>
+                  </div>
+                </div>
+
                 <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90">
                   Send Message
                 </Button>
+
+                <p className="text-xs text-muted-foreground text-center">
+                  By submitting this form, you agree to our{" "}
+                  <Link href="/privacy-policy" className="text-primary hover:underline">
+                    Privacy Policy
+                  </Link>
+                </p>
               </form>
             </CardContent>
           </Card>

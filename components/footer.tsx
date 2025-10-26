@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin } from "lucide-react"
+import Link from "next/link"
 
 export function Footer() {
   return (
@@ -62,6 +63,11 @@ export function Footer() {
                   Contact
                 </a>
               </li>
+              <li>
+                <Link href="/privacy-policy" className="hover:text-foreground transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -86,7 +92,7 @@ export function Footer() {
 
         <div className="border-t border-border mt-8 pt-8 text-center">
           <p className="text-sm text-muted-foreground">
-            © 2024 MTY Construction. All rights reserved. | Licensed & Insured
+            © 2025 MTY Construction. All rights reserved. | Licensed & Insured
           </p>
         </div>
       </div>
